@@ -26,6 +26,7 @@ public class Main extends JFrame{
 
     private void createChildWindows() {
         freqWindow = new FrequencyWindow(this);
+        freqWindow.open();
     }
 
     private void setUpGui(){
