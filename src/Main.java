@@ -11,6 +11,11 @@ public class Main extends JFrame implements ActionListener{
     //Child Windows
     FrequencyWindow freqWindow;
     CaesarCipherWindow ccWindow;
+
+    //UI elements
+    JPanel pnlToolButtons;
+    JPanel pnlText;
+
     JTextArea txtAreaCipher;
     JTextArea txtAreaPlain;
 
@@ -35,12 +40,10 @@ public class Main extends JFrame implements ActionListener{
 
     private void createChildWindows() {
         freqWindow = new FrequencyWindow(this);
-        freqWindow.open();
         ccWindow = new CaesarCipherWindow(this);
     }
 
     private void setUpGui(){
-        JLabel lblHello = new JLabel("Hello World! Let's get cracking!");
         Container contentPane = this.getContentPane();
         contentPane.setLayout(new GridBagLayout());
         GridBagConstraints constraints = new GridBagConstraints();
@@ -48,24 +51,56 @@ public class Main extends JFrame implements ActionListener{
         constraints.gridx = 0;
         constraints.gridy = 0;
         constraints.gridheight = 2;
+        constraints.weightx = 0.25;
+        constraints.anchor = GridBagConstraints.LINE_START;
+        createToolButtonPanel();
+        contentPane.add(pnlToolButtons, constraints);
 
-        contentPane.add(lblHello);
+        constraints.gridx = 1;
+        constraints.weightx = .75;
+        constraints.anchor = GridBagConstraints.LINE_END;
+        createTextAreaPanel();
+        contentPane.add(pnlText, constraints);
     }
 
-    private JPanel createToolButtonPanel(){
-        JPanel pnlToolButtons = new JPanel();
-        pnlToolButtons.setLayout(new GridLayout());
+    private void createToolButtonPanel(){
+        pnlToolButtons = new JPanel();
+        pnlToolButtons.setLayout(new GridLayout(0,1));
         btnAnalysis = new JButton("Analysis Tools");
         btnCipher = new JButton("Cipher solvers");
 
         btnAnalysis.addActionListener(this);
         btnCipher.addActionListener(this);
 
-        return pnlToolButtons;
+        pnlToolButtons.add(btnAnalysis);
+        pnlToolButtons.add(new JLabel(""));
+        pnlToolButtons.add(btnCipher);
+    }
+
+    private void createTextAreaPanel(){
+        pnlText = new JPanel();
+        pnlText.setLayout(new GridLayout(0,1));
+
+        txtAreaPlain = new JTextArea(15, 30);
+        txtAreaCipher = new JTextArea(15, 30);
+
+        txtAreaPlain.setLineWrap(true);
+        txtAreaCipher.setLineWrap(true);
+        
+        pnlText.add(new Label("Plain text"));
+        pnlText.add(new JScrollPane(txtAreaPlain));
+        pnlText.add(new Label("Cipher text"));
+        pnlText.add(new JScrollPane(txtAreaCipher));
+
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
+        if(e.getSource() == btnAnalysis){
+            freqWindow.open();
+        }
+        if(e.getSource() == btnCipher){
+            ccWindow.open();
+        }
     }
 }

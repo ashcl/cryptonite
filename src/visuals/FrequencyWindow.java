@@ -20,7 +20,7 @@ public class FrequencyWindow extends JDialog implements ActionListener {
 
     public FrequencyWindow(Frame owner) {
         super(owner, "Frequency Analysis");
-        this.setDefaultCloseOperation(JDialog.HIDE_ON_CLOSE);
+        this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 
         createUI();
 
@@ -72,7 +72,7 @@ public class FrequencyWindow extends JDialog implements ActionListener {
         constraints.gridheight = 1;
         constraints.gridx = 1;
         constraints.gridy = 0;
-        contentPane.add(radioPanel);
+        contentPane.add(radioPanel, constraints);
 
         constraints.gridy = 1;
         contentPane.add(btnStartAnalysis, constraints);
