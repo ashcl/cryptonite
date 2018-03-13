@@ -21,6 +21,11 @@ public class IndexOfCoincidence {
         System.out.println(IndexOfCoincidence.calculateICs(testString, 8));
     }
 
+    /**
+     * Calculate index of coincidence of string (@param)s using William F. Friedman's algorithm
+     * @param s
+     * @return index of coincidence of given string
+     */
     public static double findIC(String s){
         int N = s.length();
         double sum = 0.0;
@@ -39,6 +44,7 @@ public class IndexOfCoincidence {
      * Pull out every (@param)length'th character starting at (@param)index and put it into a string
      * @param s
      * @param index
+     * @param length
      * @return
      */
     private static String extractSubstring(String s, int index, int length){
@@ -60,6 +66,7 @@ public class IndexOfCoincidence {
      */
     public static String calculateICs(String s,int maxLength){
         StringBuilder builder = new StringBuilder();
+        s = s.replace(" ", "");
         //Two for loops manage each iteration the outer one controlling length of the strings
         //The inner loop extracts each substring
         for (int l = 0; l < maxLength; l++){
