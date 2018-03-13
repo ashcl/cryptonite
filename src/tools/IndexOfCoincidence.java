@@ -71,15 +71,11 @@ public class IndexOfCoincidence {
         //The inner loop extracts each substring
         for (int l = 0; l < maxLength; l++){
             //For each new length, we need a new average, we get that from the collected IC's of each substring.
-            ArrayList<Double> indexesOfCoincidence = new ArrayList<>();
-            for (int i = 0; i < l+1; i++){
-                indexesOfCoincidence.add(findIC(extractSubstring(s,i,l+1)));
-            }
             double average = 0.0;
-            for(Double d: indexesOfCoincidence){
-                average = average + d;
+            for (int i = 0; i < l+1; i++){
+                average = average + findIC(extractSubstring(s,i,l+1));
             }
-            average = average/indexesOfCoincidence.size();
+            average = average/(l+1);
             String toAppend = String.format("%d    %f", (l+1), average);
             builder.append(toAppend + "\n");
         }
