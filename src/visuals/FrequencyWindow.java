@@ -1,9 +1,12 @@
 package visuals;
 
+import tools.FrequencyAnalysis;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
 
 public class FrequencyWindow extends JDialog implements ActionListener {
 
@@ -60,10 +63,11 @@ public class FrequencyWindow extends JDialog implements ActionListener {
         txtAnalysisResults.setEditable(false);
         txtAnalysisResults.setRows(26);
         txtAnalysisResults.setColumns(15);
+        txtAnalysisResults.setLineWrap(true);
 
         constraints.gridx = 0;
         constraints.gridheight = 5;
-        contentPane.add(txtAnalysisResults, constraints);
+        contentPane.add(new JScrollPane(txtAnalysisResults), constraints);
 
         JPanel radioPanel = new JPanel(new FlowLayout());
         radioPanel.add(radBtnSingle);
@@ -83,7 +87,33 @@ public class FrequencyWindow extends JDialog implements ActionListener {
     }
 
     private void runFrequencyAnalysis() {
+        String cipherText = TextBoxes.txtAreaCipher.getText();
+        HashMap<String, Integer> map = null;
+        switch (analysisType) {
+            case "one":
+                map = FrequencyAnalysis.findMonograms(cipherText);
+                txtAnalysisResults.setText(buildResultStringForMonograms(map));
+                break;
+            case "two":
+                map = FrequencyAnalysis.findDigrams(cipherText);
+                break;
+            case "three":
+                map = FrequencyAnalysis.findTrigrams(cipherText);
+                break;
+            default:
+                txtAnalysisResults.setText("Error in analysis: Improper option selected.\n" +
+                        "Please click one of the radio buttons to select an analysis method.");
+        }
+    }
 
+    private String buildResultStringForMonograms(HashMap<String, Integer> map) {
+        StringBuilder builder = new StringBuilder();
+
+        for (String key : map.keySet()) {
+            builder.append(key + "    " + map.get(key) + "\n");
+        }
+
+        return builder.toString();
     }
 
     @Override

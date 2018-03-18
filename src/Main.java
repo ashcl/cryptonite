@@ -1,5 +1,6 @@
 import visuals.CaesarCipherWindow;
 import visuals.FrequencyWindow;
+import visuals.TextBoxes;
 
 import javax.swing.*;
 import java.awt.*;
@@ -46,16 +47,14 @@ public class Main extends JFrame implements ActionListener{
         GridBagConstraints constraints = new GridBagConstraints();
 
         constraints.gridx = 0;
-        constraints.gridy = 0;
-        constraints.gridheight = 2;
-        constraints.weightx = 0.25;
-        constraints.anchor = GridBagConstraints.LINE_START;
+        constraints.weightx = 0.75;
+//        constraints.anchor = GridBagConstraints.LINE_START;
         createToolButtonPanel();
         contentPane.add(pnlToolButtons, constraints);
 
         constraints.gridx = 1;
-        constraints.weightx = .75;
-        constraints.anchor = GridBagConstraints.LINE_END;
+        constraints.weightx = .25;
+//        constraints.anchor = GridBagConstraints.LINE_END;
         createTextAreaPanel();
         contentPane.add(pnlText, constraints);
     }
@@ -76,7 +75,7 @@ public class Main extends JFrame implements ActionListener{
 
     private void createTextAreaPanel(){
         pnlText = new JPanel();
-        pnlText.setLayout(new GridLayout(0,1));
+        pnlText.setLayout(new BorderLayout());
 
         TextBoxes.txtAreaPlain = new JTextArea(15, 30);
         TextBoxes.txtAreaCipher = new JTextArea(15, 30);
@@ -84,10 +83,10 @@ public class Main extends JFrame implements ActionListener{
         TextBoxes.txtAreaPlain.setLineWrap(true);
         TextBoxes.txtAreaCipher.setLineWrap(true);
         
-        pnlText.add(new Label("Plain text"));
-        pnlText.add(new JScrollPane(TextBoxes.txtAreaPlain));
-        pnlText.add(new Label("Cipher text"));
-        pnlText.add(new JScrollPane(TextBoxes.txtAreaCipher));
+        pnlText.add(new Label("Plain text"), BorderLayout.NORTH);
+        pnlText.add(new JScrollPane(TextBoxes.txtAreaPlain), BorderLayout.NORTH);
+        pnlText.add(new Label("Cipher text"), BorderLayout.SOUTH);
+        pnlText.add(new JScrollPane(TextBoxes.txtAreaCipher), BorderLayout.SOUTH);
 
     }
 

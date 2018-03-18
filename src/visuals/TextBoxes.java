@@ -1,3 +1,5 @@
+package visuals;
+
 import javax.swing.*;
 
 public class TextBoxes {
