@@ -61,4 +61,11 @@ public class GeneralUtilities {
         }
     }
 
+    public static String extractStringBlock(String victim, int blockSize, int beginningIndex){
+        if((beginningIndex + blockSize) > victim.length()){
+            return victim.substring(beginningIndex);
+        }
+        return victim.substring(beginningIndex, beginningIndex + blockSize);
+    }
+
 }

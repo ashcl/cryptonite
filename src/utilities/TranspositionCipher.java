@@ -2,6 +2,8 @@ package utilities;
 
 import java.util.ArrayList;
 
+import static utilities.GeneralUtilities.extractStringBlock;
+
 public class TranspositionCipher {
 
     public static void main(String[] args){
@@ -44,13 +46,6 @@ public class TranspositionCipher {
             builder.append(transpose(block, keyIndex));
         }
         return builder.toString();
-    }
-
-    private static String extractStringBlock(String victim, int blockSize, int beginningIndex){
-        if((beginningIndex + blockSize) > victim.length()){
-            return victim.substring(beginningIndex);
-        }
-        return victim.substring(beginningIndex, beginningIndex + blockSize);
     }
 
     private static String transpose(String block, int[] keyIndex) {
