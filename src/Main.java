@@ -27,11 +27,12 @@ public class Main extends JFrame implements ActionListener{
     public Main(){
         this.setTitle("Cryptonite");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setResizable(false);
 
         this.createChildWindows();
         this.setUpGui();
 
-        this.setSize(800, 600);
+        this.setSize(500, 600);
         this.setVisible(true);
 
     }
@@ -45,23 +46,20 @@ public class Main extends JFrame implements ActionListener{
         Container contentPane = this.getContentPane();
         contentPane.setLayout(new GridBagLayout());
         GridBagConstraints constraints = new GridBagConstraints();
-
-        constraints.gridx = 0;
-        constraints.weightx = 0.75;
-//        constraints.anchor = GridBagConstraints.LINE_START;
+        constraints.gridy = 0;
+        constraints.weightx = constraints.weighty = 1;
         createToolButtonPanel();
         contentPane.add(pnlToolButtons, constraints);
 
-        constraints.gridx = 1;
-        constraints.weightx = .25;
-//        constraints.anchor = GridBagConstraints.LINE_END;
+        constraints.gridy = 1;
+        constraints.gridheight = 2;
         createTextAreaPanel();
         contentPane.add(pnlText, constraints);
     }
 
     private void createToolButtonPanel(){
         pnlToolButtons = new JPanel();
-        pnlToolButtons.setLayout(new GridLayout(0,1));
+        pnlToolButtons.setLayout(new FlowLayout());
         btnAnalysis = new JButton("Analysis Tools");
         btnCipher = new JButton("Cipher solvers");
 
@@ -69,7 +67,6 @@ public class Main extends JFrame implements ActionListener{
         btnCipher.addActionListener(this);
 
         pnlToolButtons.add(btnAnalysis);
-        pnlToolButtons.add(new JLabel(""));
         pnlToolButtons.add(btnCipher);
     }
 
@@ -82,12 +79,21 @@ public class Main extends JFrame implements ActionListener{
 
         TextBoxes.txtAreaPlain.setLineWrap(true);
         TextBoxes.txtAreaCipher.setLineWrap(true);
-        
-        pnlText.add(new Label("Plain text"), BorderLayout.NORTH);
-        pnlText.add(new JScrollPane(TextBoxes.txtAreaPlain), BorderLayout.NORTH);
-        pnlText.add(new Label("Cipher text"), BorderLayout.SOUTH);
-        pnlText.add(new JScrollPane(TextBoxes.txtAreaCipher), BorderLayout.SOUTH);
 
+        JPanel plainPanel = new JPanel();
+        plainPanel.setLayout(new BorderLayout());
+
+        JPanel cipherPanel = new JPanel();
+        cipherPanel.setLayout(new BorderLayout());
+
+        plainPanel.add(new Label("Plain text"), BorderLayout.NORTH);
+        plainPanel.add(new JScrollPane(TextBoxes.txtAreaPlain), BorderLayout.SOUTH);
+
+        cipherPanel.add(new Label("Cipher text"), BorderLayout.NORTH);
+        cipherPanel.add(new JScrollPane(TextBoxes.txtAreaCipher), BorderLayout.SOUTH);
+
+        pnlText.add(plainPanel, BorderLayout.NORTH);
+        pnlText.add(cipherPanel, BorderLayout.SOUTH);
     }
 
     @Override
