@@ -1,5 +1,7 @@
 package tools;
 
+import utilities.GeneralUtilities;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -40,21 +42,7 @@ public class IndexOfCoincidence {
         return total;
     }
 
-    /**
-     * Pull out every (@param)length'th character starting at (@param)index and put it into a string
-     * @param s
-     * @param index
-     * @param length
-     * @return
-     */
-    private static String extractSubstring(String s, int index, int length){
-        StringBuilder builder = new StringBuilder();
-        for(int i = index; i < s.length(); i = i+length){
-            builder.append(s.charAt(i));
-        }
 
-        return builder.toString();
-    }
 
     /**
      * Separate out the strings to find best IC up to (@param)length. First separate the string into (@param)length substrings
@@ -66,16 +54,20 @@ public class IndexOfCoincidence {
      */
     public static String calculateICs(String s,int maxLength){
         StringBuilder builder = new StringBuilder();
-        s = s.replace(" ", "");
+        String plain = GeneralUtilities.removeWhitespace(s);
         //Two for loops manage each iteration the outer one controlling length of the strings
         //The inner loop extracts each substring
         for (int l = 0; l < maxLength; l++){
             //For each new length, we need a new average, we get that from the collected IC's of each substring.
-            double average = 0.0;
+            ArrayList<Double> indexesOfCoincidence = new ArrayList<>();
             for (int i = 0; i < l+1; i++){
-                average = average + findIC(extractSubstring(s,i,l+1));
+                indexesOfCoincidence.add(findIC(GeneralUtilities.extractSubstring(plain,i,l+1)));
             }
-            average = average/(l+1);
+            double average = 0.0;
+            for(Double d: indexesOfCoincidence){
+                average = average + d;
+            }
+            average = average/indexesOfCoincidence.size();
             String toAppend = String.format("%d    %f", (l+1), average);
             builder.append(toAppend + "\n");
         }
