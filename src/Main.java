@@ -16,9 +16,6 @@ public class Main extends JFrame implements ActionListener{
     JPanel pnlToolButtons;
     JPanel pnlText;
 
-    JTextArea txtAreaCipher;
-    JTextArea txtAreaPlain;
-
     JButton btnAnalysis;
     JButton btnCipher;
 
@@ -81,16 +78,16 @@ public class Main extends JFrame implements ActionListener{
         pnlText = new JPanel();
         pnlText.setLayout(new GridLayout(0,1));
 
-        txtAreaPlain = new JTextArea(15, 30);
-        txtAreaCipher = new JTextArea(15, 30);
+        TextBoxes.txtAreaPlain = new JTextArea(15, 30);
+        TextBoxes.txtAreaCipher = new JTextArea(15, 30);
 
-        txtAreaPlain.setLineWrap(true);
-        txtAreaCipher.setLineWrap(true);
+        TextBoxes.txtAreaPlain.setLineWrap(true);
+        TextBoxes.txtAreaCipher.setLineWrap(true);
         
         pnlText.add(new Label("Plain text"));
-        pnlText.add(new JScrollPane(txtAreaPlain));
+        pnlText.add(new JScrollPane(TextBoxes.txtAreaPlain));
         pnlText.add(new Label("Cipher text"));
-        pnlText.add(new JScrollPane(txtAreaCipher));
+        pnlText.add(new JScrollPane(TextBoxes.txtAreaCipher));
 
     }
 
