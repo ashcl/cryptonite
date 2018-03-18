@@ -18,4 +18,8 @@ public class GeneralUtilities {
         return builder.toString();
     }
 
+    public static String removeWhitespace(String s){
+        return s.replaceAll("\\s+","");
+    }
+
 }

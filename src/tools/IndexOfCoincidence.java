@@ -54,14 +54,14 @@ public class IndexOfCoincidence {
      */
     public static String calculateICs(String s,int maxLength){
         StringBuilder builder = new StringBuilder();
-        s = s.replace(" ", "");
+        String plain = GeneralUtilities.removeWhitespace(s);
         //Two for loops manage each iteration the outer one controlling length of the strings
         //The inner loop extracts each substring
         for (int l = 0; l < maxLength; l++){
             //For each new length, we need a new average, we get that from the collected IC's of each substring.
             ArrayList<Double> indexesOfCoincidence = new ArrayList<>();
             for (int i = 0; i < l+1; i++){
-                indexesOfCoincidence.add(findIC(GeneralUtilities.extractSubstring(s,i,l+1)));
+                indexesOfCoincidence.add(findIC(GeneralUtilities.extractSubstring(plain,i,l+1)));
             }
             double average = 0.0;
             for(Double d: indexesOfCoincidence){
