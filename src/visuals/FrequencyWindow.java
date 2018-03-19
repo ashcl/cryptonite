@@ -12,14 +12,15 @@ public class FrequencyWindow extends JDialog implements ActionListener {
 
     private String analysisType = "one";
 
-    ButtonGroup btnGroupFrequency;
-    JRadioButton radBtnSingle;
-    JRadioButton radBtnDouble;
-    JRadioButton radBtnTriple;
+    ButtonGroup frequencyButtonGroup;
+    JRadioButton singleRadioButton;
+    JRadioButton doubleRadioButton;
+    JRadioButton tripleRadioButton;
 
-    JButton btnStartAnalysis;
+    JButton startAnalysisButton;
+    JButton displayGraphButton;
 
-    JTextArea txtAnalysisResults;
+    JTextArea analysisResultsTextArea;
 
     public FrequencyWindow(Frame owner) {
         super(owner, "Frequency Analysis");
@@ -36,50 +37,50 @@ public class FrequencyWindow extends JDialog implements ActionListener {
         GridBagConstraints constraints = new GridBagConstraints();
 
         //Create radio buttons for analysis type
-        radBtnSingle = new JRadioButton("Monograms", true);
-        radBtnDouble = new JRadioButton("Digrams");
-        radBtnTriple = new JRadioButton("Trigrams");
+        singleRadioButton = new JRadioButton("Monograms", true);
+        doubleRadioButton = new JRadioButton("Digrams");
+        tripleRadioButton = new JRadioButton("Trigrams");
 
-        radBtnSingle.setActionCommand("mono");
-        radBtnDouble.setActionCommand("di");
-        radBtnTriple.setActionCommand("tri");
+        singleRadioButton.setActionCommand("mono");
+        doubleRadioButton.setActionCommand("di");
+        tripleRadioButton.setActionCommand("tri");
 
-        radBtnSingle.addActionListener(this);
-        radBtnDouble.addActionListener(this);
-        radBtnTriple.addActionListener(this);
+        singleRadioButton.addActionListener(this);
+        doubleRadioButton.addActionListener(this);
+        tripleRadioButton.addActionListener(this);
 
-        btnGroupFrequency = new ButtonGroup();
-        btnGroupFrequency.add(radBtnSingle);
-        btnGroupFrequency.add(radBtnDouble);
-        btnGroupFrequency.add(radBtnTriple);
+        frequencyButtonGroup = new ButtonGroup();
+        frequencyButtonGroup.add(singleRadioButton);
+        frequencyButtonGroup.add(doubleRadioButton);
+        frequencyButtonGroup.add(tripleRadioButton);
 
         //Add analysis button
-        btnStartAnalysis = new JButton("Run Analysis");
-        btnStartAnalysis.setActionCommand("run analysis");
-        btnStartAnalysis.addActionListener(this);
+        startAnalysisButton = new JButton("Run Analysis");
+        startAnalysisButton.setActionCommand("run analysis");
+        startAnalysisButton.addActionListener(this);
 
         //Add text area for analysis results
-        txtAnalysisResults = new JTextArea();
-        txtAnalysisResults.setEditable(false);
-        txtAnalysisResults.setRows(26);
-        txtAnalysisResults.setColumns(15);
-        txtAnalysisResults.setLineWrap(true);
+        analysisResultsTextArea = new JTextArea();
+        analysisResultsTextArea.setEditable(false);
+        analysisResultsTextArea.setRows(26);
+        analysisResultsTextArea.setColumns(15);
+        analysisResultsTextArea.setLineWrap(true);
 
         constraints.gridx = 0;
         constraints.gridheight = 5;
-        contentPane.add(new JScrollPane(txtAnalysisResults), constraints);
+        contentPane.add(new JScrollPane(analysisResultsTextArea), constraints);
 
         JPanel radioPanel = new JPanel(new FlowLayout());
-        radioPanel.add(radBtnSingle);
-        radioPanel.add(radBtnDouble);
-        radioPanel.add(radBtnTriple);
+        radioPanel.add(singleRadioButton);
+        radioPanel.add(doubleRadioButton);
+        radioPanel.add(tripleRadioButton);
         constraints.gridheight = 1;
         constraints.gridx = 1;
         constraints.gridy = 0;
         contentPane.add(radioPanel, constraints);
 
         constraints.gridy = 1;
-        contentPane.add(btnStartAnalysis, constraints);
+        contentPane.add(startAnalysisButton, constraints);
     }
 
     public void open() {
@@ -92,25 +93,39 @@ public class FrequencyWindow extends JDialog implements ActionListener {
         switch (analysisType) {
             case "one":
                 map = FrequencyAnalysis.findMonograms(cipherText);
-                txtAnalysisResults.setText(buildResultStringForMonograms(map));
+                analysisResultsTextArea.setText(buildMonogramString(map));
                 break;
             case "two":
                 map = FrequencyAnalysis.findDigrams(cipherText);
+                analysisResultsTextArea.setText(buildDiTrigramString(map));
                 break;
             case "three":
                 map = FrequencyAnalysis.findTrigrams(cipherText);
+                analysisResultsTextArea.setText(buildDiTrigramString(map));
                 break;
             default:
-                txtAnalysisResults.setText("Error in analysis: Improper option selected.\n" +
+                analysisResultsTextArea.setText("Error in analysis: Improper option selected.\n" +
                         "Please click one of the radio buttons to select an analysis method.");
         }
     }
 
-    private String buildResultStringForMonograms(HashMap<String, Integer> map) {
+    private String buildMonogramString(HashMap<String, Integer> map) {
         StringBuilder builder = new StringBuilder();
 
         for (String key : map.keySet()) {
             builder.append(key + "    " + map.get(key) + "\n");
+        }
+
+        return builder.toString();
+    }
+
+    private String buildDiTrigramString(HashMap<String, Integer> map) {
+        StringBuilder builder = new StringBuilder();
+
+        for (String key : map.keySet()) {
+            if (map.get(key) > 1) {
+                builder.append(key + "    " + map.get(key) + "\n");
+            }
         }
 
         return builder.toString();

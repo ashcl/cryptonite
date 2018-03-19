@@ -1,5 +1,7 @@
 package tools;
 
+import utilities.GeneralUtilities;
+
 import java.util.HashMap;
 
 public class FrequencyAnalysis {
@@ -33,8 +35,8 @@ public class FrequencyAnalysis {
 
     public static HashMap<String, Integer> findMonograms(String cipher){
         HashMap<String, Integer> frequencyChart = new HashMap<>();
-        cipher.replace(" ", "");
-        String lowerCipher = cipher.toLowerCase();
+        String cipherText = GeneralUtilities.removeWhitespace(cipher);
+        String lowerCipher = cipherText.toLowerCase();
         for (int i = 0; i < lowerCipher.length(); i++){
             String character = Character.toString(lowerCipher.charAt(i));
             updateMap(frequencyChart, character);
@@ -44,8 +46,8 @@ public class FrequencyAnalysis {
 
     public static HashMap<String, Integer> findDigrams(String cipher){
         HashMap<String, Integer> frequencyChart = new HashMap<>();
-        cipher.replace(" ", "");
-        String lowerCipher = cipher.toLowerCase();
+        String cipherText = GeneralUtilities.removeWhitespace(cipher);
+        String lowerCipher = cipherText.toLowerCase();
         for (int i = 0; i < lowerCipher.length()-1; i++){
             String character = lowerCipher.substring(i, i+2);
             updateMap(frequencyChart, character);
@@ -55,8 +57,8 @@ public class FrequencyAnalysis {
 
     public static HashMap<String, Integer> findTrigrams(String cipher){
         HashMap<String, Integer> frequencyChart = new HashMap<>();
-        cipher.replace(" ", "");
-        String lowerCipher = cipher.toLowerCase();
+        String cipherText = GeneralUtilities.removeWhitespace(cipher);
+        String lowerCipher = cipherText.toLowerCase();
         for (int i = 0; i < lowerCipher.length()-2; i++){
             String character = lowerCipher.substring(i, i+3);
             updateMap(frequencyChart, character);
