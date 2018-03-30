@@ -59,6 +59,11 @@ public class FrequencyWindow extends JDialog implements ActionListener {
         startAnalysisButton.setActionCommand("run analysis");
         startAnalysisButton.addActionListener(this);
 
+        //Add Display Graph button
+        displayGraphButton = new JButton("Display Graph");
+        displayGraphButton.setActionCommand("display graph");
+        displayGraphButton.addActionListener(this);
+
         //Add text area for analysis results
         analysisResultsTextArea = new JTextArea();
         analysisResultsTextArea.setEditable(false);
@@ -113,7 +118,7 @@ public class FrequencyWindow extends JDialog implements ActionListener {
         StringBuilder builder = new StringBuilder();
 
         for (String key : map.keySet()) {
-            builder.append(key + "    " + map.get(key) + "\n");
+            builder.append(key + "\t" + map.get(key) + "\n");
         }
 
         return builder.toString();
@@ -124,7 +129,7 @@ public class FrequencyWindow extends JDialog implements ActionListener {
 
         for (String key : map.keySet()) {
             if (map.get(key) > 1) {
-                builder.append(key + "    " + map.get(key) + "\n");
+                builder.append(key + "\t" + map.get(key) + "\n");
             }
         }
 
@@ -146,9 +151,22 @@ public class FrequencyWindow extends JDialog implements ActionListener {
             case "run analysis":
                 runFrequencyAnalysis();
                 break;
+            case "display graph":
+                displayGraph();
             default:
                 break;
 
         }
+    }
+
+    private void displayGraph() {
+
+    }
+}
+
+class GraphDialog extends JDialog{
+    GraphDialog(Frame parent){
+        super(parent, "Frequency Graph");
+        this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
     }
 }
