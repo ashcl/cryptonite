@@ -17,10 +17,26 @@ public class ColumnarTransposition {
                 "rosrr hmcrq";
         System.out.println(decode(testEncoded, 5));
 
+        String transposedEncoded = "stsni ihcuc vtesx epbuc riioa niase sopnh ucrsl hfele  \n" +
+                "tdoeu fnbsh niaag rooso cosio tisir wlmdf iiiae aheei  \n" +
+                "brosr \n" +
+                "rhmcr qniie bwteq ueamd elmut nebwc nasnd webei  \n" +
+                "gqyet othup tesnv hoitu tasnr ntpie weeet ienit aouoe  \n" +
+                "httdv ghchr saobu eptir eqasn tmdot issun orpis iohmd  \n" +
+                "amroo ienfr ciech xbigq ynlrs ecsax afroo giest otbsh  \n" +
+                "sthhe rlpfc ntcaa datup anrma odres ehqro \n" +
+                "ofoeh rnsal  \n" +
+                "ohoms etipo ehutp iohko hahrn pemwi ecite erlkl ecotp  \n" +
+                "iamhn idoku tbutc uauyr fiian natss isoey linon nlpqt  \n" +
+                "piocn teheh aitfa alsti cntlr stvta stlgf eitys hrnax  \n" +
+                "totan pteee stnmt asnnr afutn eqpcl eibwr oosni tcrcd  \n" +
+                "lerar oapis";
+
+        System.out.println(decode(transposedEncoded, "edcba"));
         String test = "This is a test string man";
-        String encoded = encode(test, 5);
+        String encoded = encode(test, "abcde");
         System.out.println(encoded);
-        String decoded = decode(encoded, 5);
+        String decoded = decode(encoded, "abcde");
         System.out.println(decoded);
     }
 
@@ -61,9 +77,19 @@ public class ColumnarTransposition {
     public static String encode(String s, String key){
         //Since all a columnar transposition is is taking a substring of every nth character, we can reuse some old code.
         StringBuilder builder = new StringBuilder();
-        s = s.replace(" ", "");
+        String trimmedPlain = GeneralUtilities.removeWhitespace(s);
+
+        String[] subStrings = new String[key.length()];
+
+        for (int i = 0; i < key.length(); i++) {
+            subStrings[i] = GeneralUtilities.extractSubstring(trimmedPlain, i, key.length());
+        }
+
+        int[] indexArray = GeneralUtilities.obtainIndexKeyArray(key, true);
+
         for(int i = 0; i < key.length(); i++){
-            builder.append(GeneralUtilities.extractSubstring(s, i, key.length()));
+            //Add each string into the cipher in key order
+            builder.append(subStrings[indexArray[i]]);
         }
 
         return builder.toString();
@@ -72,22 +98,25 @@ public class ColumnarTransposition {
     public static String decode(String s, String key){
         //Take each substring of length s.length()/colNum and read off each character from each substring in order.
         StringBuilder builder = new StringBuilder();
-        s = s.replace(" ", "");
+        String trimmedCipher = GeneralUtilities.removeWhitespace(s);
+
         String[] subStrings = new String[key.length()];
-        int interval = (s.length()/key.length());
+        int interval = (trimmedCipher.length()/key.length());
         //Split the string into several substrings representing the columns
         for (int i = 0; i < key.length(); i++){
-            subStrings[i] = s.substring(i*interval, (i*interval)+interval);
+            subStrings[i] = trimmedCipher.substring(i*interval, (i*interval)+interval);
         }
 
-        for (int i = 0; i < s.length(); i++){
+        int[] indexArray = GeneralUtilities.obtainIndexKeyArray(key, false);
+
+        for (int i = 0; i < trimmedCipher.length(); i++){
             //We want to peel of the first character of each sub string every time we go through this loop.
-            String subString = subStrings[i % key.length()];
+            String subString = subStrings[indexArray[i%key.length()]];
             if(subString.length() != 0){
                 builder.append(subString.charAt(0));
-                subStrings[i%key.length()] = subString.substring(1);
+                subStrings[indexArray[i%key.length()]] = subString.substring(1);
             } else {
-                i = s.length();
+                i = trimmedCipher.length();
             }
         }
 
