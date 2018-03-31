@@ -8,9 +8,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
 
+import static visuals.FrequencyWindow.BAR_WIDTH;
+import static visuals.FrequencyWindow.INCREMENT;
+
 public class FrequencyWindow extends JDialog implements ActionListener {
 
     private String analysisType = "one";
+
+
+    public static final int BAR_WIDTH = 50;
+    public static final int INCREMENT = 10;
 
     ButtonGroup frequencyButtonGroup;
     JRadioButton singleRadioButton;
@@ -86,6 +93,9 @@ public class FrequencyWindow extends JDialog implements ActionListener {
 
         constraints.gridy = 1;
         contentPane.add(startAnalysisButton, constraints);
+
+        constraints.gridy = 2;
+        contentPane.add(displayGraphButton, constraints);
     }
 
     public void open() {
@@ -160,13 +170,57 @@ public class FrequencyWindow extends JDialog implements ActionListener {
     }
 
     private void displayGraph() {
+        //Inspired by
+        HashMap<String, Integer> monoFreq = FrequencyAnalysis.findMonograms(TextBoxes.txtAreaCipher.getText());
+        int width = monoFreq.size() * BAR_WIDTH;
+        int max = maxValue(monoFreq);
+        int height = max * INCREMENT + 100;
+        int horizon = height - 25;
+        BarGraphPanel panel = new BarGraphPanel(width, height, horizon, monoFreq);
+        JOptionPane.showMessageDialog(null, panel);
+    }
 
+    private int maxValue(HashMap<String, Integer> frequencyMap) {
+        int max = 0;
+        for (Integer num : frequencyMap.values()) {
+            if (num > max) {
+                max = num;
+            }
+        }
+        return max;
     }
 }
 
-class GraphDialog extends JDialog{
-    GraphDialog(Frame parent){
-        super(parent, "Frequency Graph");
-        this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+class BarGraphPanel extends JPanel{
+
+    int width;
+    int dimHeight;
+    private int  horizon;
+    HashMap<String, Integer> values;
+
+    BarGraphPanel(int width, int height, int horizon, HashMap<String, Integer> values){
+        this.width = width;
+        this.dimHeight = height;
+        this.horizon = horizon;
+        this.values = values;
+    }
+
+    @Override
+    protected void paintComponent(Graphics g){
+        super.paintComponent(g);
+        int x = 0;
+        for(HashMap.Entry<String, Integer> entry : this.values.entrySet()){
+            int height = entry.getValue() * INCREMENT;
+            int y = horizon - height;
+            g.fillRect(x, y, BAR_WIDTH - 10, height);
+            g.drawString(entry.getKey(), x, horizon + 10);
+            g.drawString(String.valueOf(entry.getValue()), x, y-2);
+            x += BAR_WIDTH;
+        }
+    }
+
+    @Override
+    public Dimension getPreferredSize() {
+        return new Dimension(width, dimHeight);
     }
 }
