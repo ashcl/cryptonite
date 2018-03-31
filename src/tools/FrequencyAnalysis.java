@@ -34,7 +34,7 @@ public class FrequencyAnalysis {
     }
 
     public static HashMap<String, Integer> findMonograms(String cipher){
-        HashMap<String, Integer> frequencyChart = new HashMap<>();
+        HashMap<String, Integer> frequencyChart = initializeAlphabetMap();
         String cipherText = GeneralUtilities.removeWhitespace(cipher);
         String lowerCipher = cipherText.toLowerCase();
         for (int i = 0; i < lowerCipher.length(); i++){
@@ -74,6 +74,16 @@ public class FrequencyAnalysis {
         }else{
             frequencyChart.put(character, 1);
         }
+    }
+
+    private static HashMap<String, Integer> initializeAlphabetMap(){
+        HashMap<String, Integer> initMap = new HashMap<>();
+
+        for (Character c : "abcdefghijklmnopqrstuvwxyz".toCharArray()){
+            initMap.put(String.valueOf(c), 0);
+        }
+
+        return initMap;
     }
 
 }
