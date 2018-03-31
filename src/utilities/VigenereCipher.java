@@ -2,8 +2,7 @@ package utilities;
 
 import java.util.Scanner;
 
-
-class Vigenere {
+class VigenereCipher {
 
     public static String encrypt(String text, final String key)
     {
