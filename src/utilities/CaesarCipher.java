@@ -5,7 +5,7 @@ package utilities;
  */
 import java.util.Scanner;
 
-class CaesarCipher
+public class CaesarCipher
 {
     public static final String ALPHABET = "abcdefghijklmnopqrstuvwxyz";
 
