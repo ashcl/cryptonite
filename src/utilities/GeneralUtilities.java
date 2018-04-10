@@ -1,7 +1,6 @@
 package utilities;
 
-import java.util.Arrays;
-import java.util.HashMap;
+import java.util.*;
 
 public class GeneralUtilities {
 
@@ -53,7 +52,7 @@ public class GeneralUtilities {
         return indexArray;
     }
 
-    private static int findIndex(String key, char keyChar, HashMap<Character, Integer> lastIndexMap) {
+    private static int findIndex(String key, char keyChar, Map<Character, Integer> lastIndexMap) {
         if(lastIndexMap.containsKey(keyChar)) {
             return key.indexOf(keyChar, lastIndexMap.get(keyChar));
         }else{
@@ -68,4 +67,15 @@ public class GeneralUtilities {
         return victim.substring(beginningIndex, beginningIndex + blockSize);
     }
 
+    public static <K, V extends Comparable<? super V>> Map<K, V> sortByValue(Map<K, V> map) {
+        List<Map.Entry<K, V>> list = new ArrayList<>(map.entrySet());
+        list.sort((o1, o2) -> o2.getValue().compareTo(o1.getValue()));
+
+        Map<K, V> result = new LinkedHashMap<>();
+        for (Map.Entry<K, V> entry : list) {
+            result.put(entry.getKey(), entry.getValue());
+        }
+
+        return result;
+    }
 }
