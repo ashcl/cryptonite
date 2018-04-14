@@ -1,6 +1,5 @@
 import visuals.*;
 
-import javax.naming.Context;
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
@@ -12,7 +11,7 @@ public class Main extends JFrame implements ActionListener{
 
     //Child Windows
     FrequencyWindow freqWindow;
-    CaesarCipherWindow ccWindow;
+    ShiftAnalysisWindow shiftAnalysisWindow;
     KasiskiWindow kasiskiWindow;
     ICWindow iCWindow;
 
@@ -26,7 +25,7 @@ public class Main extends JFrame implements ActionListener{
     JButton btnKasiski;
 
     JButton btnCipher;
-    JButton btnCaesar;
+    JButton btnShift;
 
     public static void main(String[] args){
         new Main();
@@ -47,7 +46,7 @@ public class Main extends JFrame implements ActionListener{
 
     private void createChildWindows() {
         freqWindow = new FrequencyWindow(this);
-        ccWindow = new CaesarCipherWindow(this);
+        shiftAnalysisWindow = new ShiftAnalysisWindow(this);
         kasiskiWindow = new KasiskiWindow(this);
         iCWindow = new ICWindow(this);
     }
@@ -136,8 +135,13 @@ public class Main extends JFrame implements ActionListener{
         btnFrequency.addActionListener(e -> freqWindow.open());
         btnIC.addActionListener(e -> iCWindow.open());
         btnKasiski.addActionListener(e -> kasiskiWindow.open());
+        btnShift = new JButton("Shift Analysis");
+
+        btnShift.addActionListener(e -> shiftAnalysisWindow.open());
+
 
         contentPane.add(btnFrequency);
+        contentPane.add(btnShift);
         contentPane.add(btnKasiski);
         contentPane.add(btnIC);
         return dialog;
@@ -150,11 +154,7 @@ public class Main extends JFrame implements ActionListener{
         contentPane.setLayout(new FlowLayout());
         dialog.setSize(250, 250);
 
-        btnCaesar = new JButton("Caesar Cipher");
 
-        btnCaesar.addActionListener(e -> ccWindow.open());
-
-        contentPane.add(btnCaesar);
         return dialog;
     }
 }

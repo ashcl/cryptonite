@@ -7,12 +7,12 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class CaesarCipherWindow extends JDialog {
+public class ShiftAnalysisWindow extends JDialog {
 
     JButton solveButton;
     JTextArea resultTextArea;
 
-    public CaesarCipherWindow(Frame owner){
+    public ShiftAnalysisWindow(Frame owner){
         super(owner, "Caesar Cipher");
         this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         this.setSize(300, 500);
@@ -22,7 +22,7 @@ public class CaesarCipherWindow extends JDialog {
     private void initializeUI() {
         Container container = this.getContentPane();
         container.setLayout(new BorderLayout());
-        solveButton = new JButton("Solve");
+        solveButton = new JButton("Shift");
         solveButton.addActionListener(e -> solveCipher());
 
         resultTextArea = new JTextArea(24, 24);
