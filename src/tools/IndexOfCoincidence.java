@@ -52,7 +52,7 @@ public class IndexOfCoincidence {
      * @param maxLength
      * @return
      */
-    public static String calculateICs(String s,int maxLength){
+    public static String calculateICs(String s, int maxLength){
         StringBuilder builder = new StringBuilder();
         String plain = GeneralUtilities.removeWhitespace(s);
         //Two for loops manage each iteration the outer one controlling length of the strings

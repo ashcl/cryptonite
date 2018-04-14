@@ -1,7 +1,4 @@
-import visuals.CaesarCipherWindow;
-import visuals.FrequencyWindow;
-import visuals.KasiskiWindow;
-import visuals.TextBoxes;
+import visuals.*;
 
 import javax.naming.Context;
 import javax.swing.*;
@@ -17,6 +14,7 @@ public class Main extends JFrame implements ActionListener{
     FrequencyWindow freqWindow;
     CaesarCipherWindow ccWindow;
     KasiskiWindow kasiskiWindow;
+    ICWindow iCWindow;
 
     //UI elements
     JPanel pnlToolButtons;
@@ -51,7 +49,7 @@ public class Main extends JFrame implements ActionListener{
         freqWindow = new FrequencyWindow(this);
         ccWindow = new CaesarCipherWindow(this);
         kasiskiWindow = new KasiskiWindow(this);
-        kasiskiWindow.open();
+        iCWindow = new ICWindow(this);
     }
 
     private void setUpGui(){
@@ -98,16 +96,12 @@ public class Main extends JFrame implements ActionListener{
         JPanel cipherPanel = new JPanel();
         cipherPanel.setLayout(new BorderLayout());
 
-//        plainPanel.add(new Label("Plain text"), BorderLayout.NORTH);
         plainPanel.add(new JScrollPane(TextBoxes.txtAreaPlain), BorderLayout.SOUTH);
-
         Border plainTextBorder = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.BLACK), "Plain Text");
         ((TitledBorder) plainTextBorder).setTitleJustification(TitledBorder.CENTER);
         plainPanel.setBorder(plainTextBorder);
 
-//        cipherPanel.add(new Label("Cipher text"), BorderLayout.NORTH);
         cipherPanel.add(new JScrollPane(TextBoxes.txtAreaCipher), BorderLayout.SOUTH);
-
         Border cipherTextBorder = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.BLACK), "Cipher Text");
         ((TitledBorder) cipherTextBorder).setTitleJustification(TitledBorder.CENTER);
         cipherPanel.setBorder(cipherTextBorder);
@@ -140,11 +134,12 @@ public class Main extends JFrame implements ActionListener{
         btnKasiski = new JButton("Kasiski Analysis");
 
         btnFrequency.addActionListener(e -> freqWindow.open());
-//        btnIC.addActionListener(e -> iCWindow.open());
+        btnIC.addActionListener(e -> iCWindow.open());
         btnKasiski.addActionListener(e -> kasiskiWindow.open());
 
         contentPane.add(btnFrequency);
         contentPane.add(btnKasiski);
+        contentPane.add(btnIC);
         return dialog;
     }
 
