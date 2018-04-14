@@ -7,7 +7,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class CaesarCipherWindow extends JDialog  implements ActionListener {
+public class CaesarCipherWindow extends JDialog {
 
     JButton solveButton;
     JTextArea resultTextArea;
@@ -23,7 +23,7 @@ public class CaesarCipherWindow extends JDialog  implements ActionListener {
         Container container = this.getContentPane();
         container.setLayout(new BorderLayout());
         solveButton = new JButton("Solve");
-        solveButton.addActionListener(this);
+        solveButton.addActionListener(e -> solveCipher());
 
         resultTextArea = new JTextArea(24, 24);
 
@@ -33,14 +33,6 @@ public class CaesarCipherWindow extends JDialog  implements ActionListener {
 
     public void open(){
         this.setVisible(true);
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        Object actionSource = e.getSource();
-        if (actionSource == solveButton){
-            solveCipher();
-        }
     }
 
     private void solveCipher(){
