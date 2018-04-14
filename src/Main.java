@@ -1,9 +1,12 @@
 import visuals.CaesarCipherWindow;
 import visuals.FrequencyWindow;
+import visuals.KasiskiWindow;
 import visuals.TextBoxes;
 
 import javax.naming.Context;
 import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,6 +16,7 @@ public class Main extends JFrame implements ActionListener{
     //Child Windows
     FrequencyWindow freqWindow;
     CaesarCipherWindow ccWindow;
+    KasiskiWindow kasiskiWindow;
 
     //UI elements
     JPanel pnlToolButtons;
@@ -46,6 +50,8 @@ public class Main extends JFrame implements ActionListener{
     private void createChildWindows() {
         freqWindow = new FrequencyWindow(this);
         ccWindow = new CaesarCipherWindow(this);
+        kasiskiWindow = new KasiskiWindow(this);
+        kasiskiWindow.open();
     }
 
     private void setUpGui(){
@@ -92,11 +98,19 @@ public class Main extends JFrame implements ActionListener{
         JPanel cipherPanel = new JPanel();
         cipherPanel.setLayout(new BorderLayout());
 
-        plainPanel.add(new Label("Plain text"), BorderLayout.NORTH);
+//        plainPanel.add(new Label("Plain text"), BorderLayout.NORTH);
         plainPanel.add(new JScrollPane(TextBoxes.txtAreaPlain), BorderLayout.SOUTH);
 
-        cipherPanel.add(new Label("Cipher text"), BorderLayout.NORTH);
+        Border plainTextBorder = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.BLACK), "Plain Text");
+        ((TitledBorder) plainTextBorder).setTitleJustification(TitledBorder.CENTER);
+        plainPanel.setBorder(plainTextBorder);
+
+//        cipherPanel.add(new Label("Cipher text"), BorderLayout.NORTH);
         cipherPanel.add(new JScrollPane(TextBoxes.txtAreaCipher), BorderLayout.SOUTH);
+
+        Border cipherTextBorder = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.BLACK), "Cipher Text");
+        ((TitledBorder) cipherTextBorder).setTitleJustification(TitledBorder.CENTER);
+        cipherPanel.setBorder(cipherTextBorder);
 
         pnlText.add(plainPanel, BorderLayout.NORTH);
         pnlText.add(cipherPanel, BorderLayout.SOUTH);
@@ -127,9 +141,10 @@ public class Main extends JFrame implements ActionListener{
 
         btnFrequency.addActionListener(e -> freqWindow.open());
 //        btnIC.addActionListener(e -> iCWindow.open());
-//        btnKasiski.addActionListener(e -> kasiskiWindow.open());
+        btnKasiski.addActionListener(e -> kasiskiWindow.open());
 
         contentPane.add(btnFrequency);
+        contentPane.add(btnKasiski);
         return dialog;
     }
 

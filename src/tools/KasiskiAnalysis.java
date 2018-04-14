@@ -25,15 +25,13 @@ public class KasiskiAnalysis {
                 "tfhiz myeak rbngs hrnkm tmaoy umtym ldeuh mtoye airks  \n" +
                 "mf ";
 
-        int[] suggestedLenths = suggestKeyLengths(cipher, 4);
+        int[] suggestedLenths = suggestKeyLengths(calculateFactors(cipher, 4));
         for (int i : suggestedLenths) {
             System.out.println(i + ", ");
         }
     }
 
-    public static int[] suggestKeyLengths(String cipherText, int sampleLength) {
-
-        HashMap<Integer, Integer> factorCounts = calculateFactors(cipherText, sampleLength);
+    public static int[] suggestKeyLengths(HashMap<Integer, Integer> factorCounts) {
 
         //The highest count factor that isn't 2 is the likely key length.
         //However, suggest the second and third highest count factor as well, for safety
@@ -49,7 +47,7 @@ public class KasiskiAnalysis {
         return likelyKeyLengths;
     }
 
-    private static HashMap<Integer, Integer> calculateFactors(String cipherText, int sampleLength) {
+    public static HashMap<Integer, Integer> calculateFactors(String cipherText, int sampleLength) {
         HashMap<Integer, Integer> factorCounts = new HashMap<>();
         String trimmedCipher = GeneralUtilities.removeWhitespace(cipherText);
 
