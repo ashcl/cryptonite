@@ -2,6 +2,7 @@ import visuals.CaesarCipherWindow;
 import visuals.FrequencyWindow;
 import visuals.TextBoxes;
 
+import javax.naming.Context;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -18,7 +19,12 @@ public class Main extends JFrame implements ActionListener{
     JPanel pnlText;
 
     JButton btnAnalysis;
+    JButton btnFrequency;
+    JButton btnIC;
+    JButton btnKasiski;
+
     JButton btnCipher;
+    JButton btnCaesar;
 
     public static void main(String[] args){
         new Main();
@@ -99,10 +105,46 @@ public class Main extends JFrame implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == btnAnalysis){
-            freqWindow.open();
+            JDialog analysisDialog = createAnalysisLinkDialog();
+            analysisDialog.setVisible(true);
         }
         if(e.getSource() == btnCipher){
-            ccWindow.open();
+            JDialog cipherDialog = createCipherLinkDialog();
+            cipherDialog.setVisible(true);
         }
+    }
+
+    private JDialog createAnalysisLinkDialog() {
+        JDialog dialog = new JDialog(this, "Analysis Tools");
+        dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+        Container contentPane = dialog.getContentPane();
+        contentPane.setLayout(new FlowLayout());
+        dialog.setSize(250, 250);
+
+        btnFrequency = new JButton("Frequency Analysis");
+        btnIC = new JButton("Index of Coincidence");
+        btnKasiski = new JButton("Kasiski Analysis");
+
+        btnFrequency.addActionListener(e -> freqWindow.open());
+//        btnIC.addActionListener(e -> iCWindow.open());
+//        btnKasiski.addActionListener(e -> kasiskiWindow.open());
+
+        contentPane.add(btnFrequency);
+        return dialog;
+    }
+
+    private JDialog createCipherLinkDialog(){
+        JDialog dialog = new JDialog(this, "Ciphers");
+        dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+        Container contentPane = dialog.getContentPane();
+        contentPane.setLayout(new FlowLayout());
+        dialog.setSize(250, 250);
+
+        btnCaesar = new JButton("Caesar Cipher");
+
+        btnCaesar.addActionListener(e -> ccWindow.open());
+
+        contentPane.add(btnCaesar);
+        return dialog;
     }
 }

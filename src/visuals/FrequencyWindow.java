@@ -177,7 +177,7 @@ public class FrequencyWindow extends JDialog implements ActionListener {
         int height = max * INCREMENT + 100;
         int horizon = height - 25;
         BarGraphPanel panel = new BarGraphPanel(width, height, horizon, monoFreq);
-        JOptionPane.showMessageDialog(null, panel);
+        JOptionPane.showMessageDialog(null, panel, "Frequency Graph",JOptionPane.PLAIN_MESSAGE);
     }
 
     private int maxValue(HashMap<String, Integer> frequencyMap) {
