@@ -13,7 +13,7 @@ public class ShiftAnalysisWindow extends JDialog {
     JTextArea resultTextArea;
 
     public ShiftAnalysisWindow(Frame owner){
-        super(owner, "Caesar Cipher");
+        super(owner, "Shift Analysis");
         this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         this.setSize(300, 500);
         initializeUI();

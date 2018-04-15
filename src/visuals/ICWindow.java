@@ -4,8 +4,6 @@ import tools.IndexOfCoincidence;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class ICWindow extends JDialog {
 
@@ -17,10 +15,10 @@ public class ICWindow extends JDialog {
         super(owner, "Index of Coincidence");
         this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         this.setSize(300, 500);
-        initializeUI();
+        createUI();
     }
 
-    private void initializeUI() {
+    private void createUI() {
         Container container = this.getContentPane();
         container.setLayout(new BorderLayout());
 
