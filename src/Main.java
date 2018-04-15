@@ -1,3 +1,4 @@
+import utilities.CaesarCipher;
 import visuals.*;
 
 import javax.swing.*;
@@ -15,6 +16,7 @@ public class Main extends JFrame implements ActionListener{
     KasiskiWindow kasiskiWindow;
     ICWindow iCWindow;
 
+    CaesarCipherWindow ccWindow;
     //UI elements
     JPanel pnlToolButtons;
     JPanel pnlText;
@@ -23,6 +25,8 @@ public class Main extends JFrame implements ActionListener{
     JButton btnFrequency;
     JButton btnIC;
     JButton btnKasiski;
+
+    JButton btnCaesar;
 
     JButton btnCipher;
     JButton btnShift;
@@ -49,6 +53,8 @@ public class Main extends JFrame implements ActionListener{
         shiftAnalysisWindow = new ShiftAnalysisWindow(this);
         kasiskiWindow = new KasiskiWindow(this);
         iCWindow = new ICWindow(this);
+
+        ccWindow = new CaesarCipherWindow(this);
     }
 
     private void setUpGui(){
@@ -136,7 +142,6 @@ public class Main extends JFrame implements ActionListener{
         btnIC.addActionListener(e -> iCWindow.open());
         btnKasiski.addActionListener(e -> kasiskiWindow.open());
         btnShift = new JButton("Shift Analysis");
-
         btnShift.addActionListener(e -> shiftAnalysisWindow.open());
 
 
@@ -154,7 +159,10 @@ public class Main extends JFrame implements ActionListener{
         contentPane.setLayout(new FlowLayout());
         dialog.setSize(250, 250);
 
+        btnCaesar = new JButton("Caesar Cipher");
+        btnCaesar.addActionListener(e -> ccWindow.open());
 
+        contentPane.add(btnCaesar);
         return dialog;
     }
 }
