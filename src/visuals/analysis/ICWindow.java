@@ -1,6 +1,7 @@
-package visuals;
+package visuals.analysis;
 
 import tools.IndexOfCoincidence;
+import visuals.TextBoxes;
 
 import javax.swing.*;
 import java.awt.*;

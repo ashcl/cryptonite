@@ -1,6 +1,7 @@
-package visuals;
+package visuals.analysis;
 
 import tools.FrequencyAnalysis;
+import visuals.TextBoxes;
 
 import javax.swing.*;
 import java.awt.*;
@@ -8,8 +9,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
 
-import static visuals.FrequencyWindow.BAR_WIDTH;
-import static visuals.FrequencyWindow.INCREMENT;
+import static visuals.analysis.FrequencyWindow.BAR_WIDTH;
+import static visuals.analysis.FrequencyWindow.INCREMENT;
 
 public class FrequencyWindow extends JDialog implements ActionListener {
 

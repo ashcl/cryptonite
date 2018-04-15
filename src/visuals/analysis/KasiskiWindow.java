@@ -1,6 +1,7 @@
-package visuals;
+package visuals.analysis;
 
 import tools.KasiskiAnalysis;
+import visuals.TextBoxes;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;

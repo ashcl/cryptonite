@@ -1,5 +1,9 @@
-import utilities.CaesarCipher;
 import visuals.*;
+import visuals.analysis.FrequencyWindow;
+import visuals.analysis.ICWindow;
+import visuals.analysis.KasiskiWindow;
+import visuals.analysis.ShiftAnalysisWindow;
+import visuals.ciphers.CaesarCipherWindow;
 
 import javax.swing.*;
 import javax.swing.border.Border;
