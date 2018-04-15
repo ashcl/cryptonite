@@ -4,34 +4,55 @@ import java.util.Scanner;
 
 class VigenereCipher {
 
-    public static String encrypt(String text, final String key)
-    {
-        String res = "";
-        text = text.toUpperCase();
-        for (int i = 0, j = 0; i < text.length(); i++)
-        {
-            char c = text.charAt(i);
-            if (c < 'A' || c > 'Z')
-                continue;
-            res += (char) ((c + key.charAt(j) - 2 * 'A') % 26 + 'A');
-            j = ++j % key.length();
+    public static String encrypt(String plainText, String key){
+        String trimmedText = GeneralUtilities.removeWhitespace(plainText);
+        trimmedText = trimmedText.toLowerCase();
+
+        String[] subStrings = new String[key.length()];
+        for (int i = 0; i < key.length(); i++){
+            subStrings[i] = GeneralUtilities.extractSubstring(trimmedText, i, key.length());
         }
-        return res;
+
+        //Shift each string by an amount defined by the key
+        for (int i = 0; i < key.length(); i++){
+            subStrings[i] = CaesarCipher.encrypt(subStrings[i], CaesarCipher.ALPHABET.indexOf(key.charAt(i)));
+        }
+
+        StringBuilder cipherBuilder = new StringBuilder();
+        buildResult(plainText, key, subStrings, cipherBuilder);
+
+        return cipherBuilder.toString();
     }
 
-    public static String decrypt(String text, final String key)
-    {
-        String res = "";
-        text = text.toUpperCase();
-        for (int i = 0, j = 0; i < text.length(); i++)
-        {
-            char c = text.charAt(i);
-            if (c < 'A' || c > 'Z')
-                continue;
-            res += (char) ((c - key.charAt(j) + 26) % 26 + 'A');
-            j = ++j % key.length();
+    public static String decrypt(String cipherText, String key){
+        String trimmedText = GeneralUtilities.removeWhitespace(cipherText);
+        trimmedText = trimmedText.toLowerCase();
+
+        String[] subStrings = new String[key.length()];
+        for (int i = 0; i < key.length(); i++){
+            subStrings[i] = GeneralUtilities.extractSubstring(trimmedText, i, key.length());
         }
-        return res;
+
+        //Shift each string by an amount defined by the key
+        for (int i = 0; i < key.length(); i++){
+            subStrings[i] = CaesarCipher.decrypt(subStrings[i], CaesarCipher.ALPHABET.indexOf(key.charAt(i)));
+        }
+
+        StringBuilder cipherBuilder = new StringBuilder();
+        buildResult(cipherText, key, subStrings, cipherBuilder);
+
+        return cipherBuilder.toString();
+    }
+
+    private static void buildResult(String cipherText, String key, String[] subStrings, StringBuilder cipherBuilder) {
+        for (int i = 0; i < cipherText.length(); i++){
+            //We want to peel of the first character of each sub string every time we go through this loop.
+            String subString = subStrings[i % key.length()];
+            if(subString.length() != 0){
+                cipherBuilder.append(subString.charAt(0));
+                subStrings[i%key.length()] = subString.substring(1);
+            }
+        }
     }
 
     public static void main(String[] args) {
