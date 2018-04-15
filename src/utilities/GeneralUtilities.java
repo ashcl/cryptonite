@@ -54,7 +54,7 @@ public class GeneralUtilities {
 
     private static int findIndex(String key, char keyChar, Map<Character, Integer> lastIndexMap) {
         if(lastIndexMap.containsKey(keyChar)) {
-            return key.indexOf(keyChar, lastIndexMap.get(keyChar));
+            return key.indexOf(keyChar, (lastIndexMap.get(keyChar)+1));
         }else{
             return key.indexOf(keyChar);
         }

@@ -8,25 +8,19 @@ import java.awt.*;
 
 public class CaesarCipherWindow extends CipherDialog {
 
-    JButton encryptButton;
-    JButton decryptButton;
     JTextField shiftLengthField;
 
     public CaesarCipherWindow(Frame parent){
         super(parent, "Caesar Cipher");
     }
 
+    @Override
     void createUI() {
         Container contentPane = this.getContentPane();
         contentPane.setLayout(new GridBagLayout());
         GridBagConstraints constraints = new GridBagConstraints();
 
         shiftLengthField = new JTextField(2);
-
-        encryptButton = new JButton("Encrypt");
-        decryptButton = new JButton("Decrypt");
-        encryptButton.addActionListener(e -> encryptText());
-        decryptButton.addActionListener(e -> decryptText());
 
         constraints.gridy = 0;
         constraints.gridx = 0;
@@ -42,6 +36,7 @@ public class CaesarCipherWindow extends CipherDialog {
         contentPane.add(decryptButton, constraints);
     }
 
+    @Override
     void encryptText(){
         String plainText = TextBoxes.txtAreaPlain.getText();
         try {
@@ -51,6 +46,7 @@ public class CaesarCipherWindow extends CipherDialog {
         }
     }
 
+    @Override
     void decryptText(){
         String cipherText = TextBoxes.txtAreaCipher.getText();
         try {
@@ -58,9 +54,5 @@ public class CaesarCipherWindow extends CipherDialog {
         }catch (NumberFormatException exc){
             JOptionPane.showMessageDialog(this, "Error: Shift length must be a number!", "Error", JOptionPane.ERROR_MESSAGE);
         }
-    }
-
-    public void open() {
-        this.setVisible(true);
     }
 }

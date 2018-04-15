@@ -4,6 +4,7 @@ import visuals.analysis.ICWindow;
 import visuals.analysis.KasiskiWindow;
 import visuals.analysis.ShiftAnalysisWindow;
 import visuals.ciphers.CaesarCipherWindow;
+import visuals.ciphers.TranspositionCipherWindow;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -20,7 +21,8 @@ public class Main extends JFrame implements ActionListener{
     KasiskiWindow kasiskiWindow;
     ICWindow iCWindow;
 
-    CaesarCipherWindow ccWindow;
+    CaesarCipherWindow caesarCipherWindow;
+    TranspositionCipherWindow transpositionCipherWindow;
     //UI elements
     JPanel pnlToolButtons;
     JPanel pnlText;
@@ -31,6 +33,7 @@ public class Main extends JFrame implements ActionListener{
     JButton btnKasiski;
 
     JButton btnCaesar;
+    JButton btnTransposition;
 
     JButton btnCipher;
     JButton btnShift;
@@ -58,7 +61,8 @@ public class Main extends JFrame implements ActionListener{
         kasiskiWindow = new KasiskiWindow(this);
         iCWindow = new ICWindow(this);
 
-        ccWindow = new CaesarCipherWindow(this);
+        caesarCipherWindow = new CaesarCipherWindow(this);
+        transpositionCipherWindow = new TranspositionCipherWindow(this);
     }
 
     private void setUpGui(){
@@ -164,9 +168,13 @@ public class Main extends JFrame implements ActionListener{
         dialog.setSize(250, 250);
 
         btnCaesar = new JButton("Caesar Cipher");
-        btnCaesar.addActionListener(e -> ccWindow.open());
+        btnCaesar.addActionListener(e -> caesarCipherWindow.open());
+
+        btnTransposition = new JButton("Transposition Cipher");
+        btnTransposition.addActionListener(e -> transpositionCipherWindow.open());
 
         contentPane.add(btnCaesar);
+        contentPane.add(btnTransposition);
         return dialog;
     }
 }

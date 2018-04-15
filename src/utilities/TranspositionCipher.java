@@ -1,26 +1,32 @@
 package utilities;
 
+import java.lang.reflect.MalformedParametersException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import static utilities.GeneralUtilities.extractStringBlock;
 
 public class TranspositionCipher {
 
     public static void main(String[] args){
-        String toEncode = "black";
-        String key = "black";
+        Scanner sysIn = new Scanner(System.in);
+        String toEncode = sysIn.nextLine();
+        String key = sysIn.nextLine();
         String encoded = encode(toEncode, key);
         System.out.println(encoded);
         System.out.println(decode(encoded, key));
     }
 
-    public static String encode(String s, String key){
+    public static String encode(String s, String key) throws MalformedParametersException{
+        if(key.equalsIgnoreCase("") || key.length() <= 0){
+            throw new MalformedParametersException("Key must contain text of some sort.");
+        }
         int[] keyIndex = GeneralUtilities.obtainIndexKeyArray(key, true);
         String plainText = GeneralUtilities.removeWhitespace(s);
         //Split cipher text into blocks of key.length()
         ArrayList<String> subStrings = new ArrayList<>();
         for (int i = 0; i < plainText.length(); i= i+key.length()){
-            subStrings.add(extractStringBlock(plainText, key.length(), i));
+            subStrings.add(extractStringBlock(plainText, key.length()+1, i));
         }
         StringBuilder builder = new StringBuilder();
         for(String block: subStrings) {
@@ -31,7 +37,10 @@ public class TranspositionCipher {
         return builder.toString();
     }
 
-    public static String decode(String s, String key){
+    public static String decode(String s, String key) throws MalformedParametersException{
+        if(key.equalsIgnoreCase("") || key.length() <= 0){
+            throw new MalformedParametersException("Key must contain text of some sort.");
+        }
         int[] keyIndex = GeneralUtilities.obtainIndexKeyArray(key, false);
         String cipherText = GeneralUtilities.removeWhitespace(s);
         //Split cipher text into blocks of key.length()
@@ -50,8 +59,12 @@ public class TranspositionCipher {
 
     private static String transpose(String block, int[] keyIndex) {
         StringBuilder transposeBuilder = new StringBuilder();
-        for (int i: keyIndex){
-            transposeBuilder.append(String.valueOf(block.charAt(i)));
+        for (int i: keyIndex) {
+            try {
+                transposeBuilder.append(String.valueOf(block.charAt(i)));
+            } catch (StringIndexOutOfBoundsException exc) {
+                //Ignore the error for now
+            }
         }
         return transposeBuilder.toString();
     }
