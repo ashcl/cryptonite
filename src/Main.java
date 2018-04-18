@@ -4,7 +4,9 @@ import visuals.analysis.ICWindow;
 import visuals.analysis.KasiskiWindow;
 import visuals.analysis.ShiftAnalysisWindow;
 import visuals.ciphers.CaesarCipherWindow;
+import visuals.ciphers.ColumnarTranspositionCipherWindow;
 import visuals.ciphers.TranspositionCipherWindow;
+import visuals.ciphers.VigenereCipherWindow;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -22,7 +24,9 @@ public class Main extends JFrame implements ActionListener{
     ICWindow iCWindow;
 
     CaesarCipherWindow caesarCipherWindow;
+    VigenereCipherWindow vigenereCipherWindow;
     TranspositionCipherWindow transpositionCipherWindow;
+    ColumnarTranspositionCipherWindow columnarTranspositionCipherWindow;
     //UI elements
     JPanel pnlToolButtons;
     JPanel pnlText;
@@ -33,7 +37,9 @@ public class Main extends JFrame implements ActionListener{
     JButton btnKasiski;
 
     JButton btnCaesar;
+    JButton btnVigenere;
     JButton btnTransposition;
+    JButton btnColumnar;
 
     JButton btnCipher;
     JButton btnShift;
@@ -62,7 +68,9 @@ public class Main extends JFrame implements ActionListener{
         iCWindow = new ICWindow(this);
 
         caesarCipherWindow = new CaesarCipherWindow(this);
+        vigenereCipherWindow = new VigenereCipherWindow(this);
         transpositionCipherWindow = new TranspositionCipherWindow(this);
+        columnarTranspositionCipherWindow = new ColumnarTranspositionCipherWindow(this);
     }
 
     private void setUpGui(){
@@ -170,11 +178,19 @@ public class Main extends JFrame implements ActionListener{
         btnCaesar = new JButton("Caesar Cipher");
         btnCaesar.addActionListener(e -> caesarCipherWindow.open());
 
+        btnVigenere = new JButton("Vigenere Cipher");
+        btnVigenere.addActionListener(e -> vigenereCipherWindow.open());
+
         btnTransposition = new JButton("Transposition Cipher");
         btnTransposition.addActionListener(e -> transpositionCipherWindow.open());
 
+        btnColumnar = new JButton("Columnar Transposition");
+        btnColumnar.addActionListener(e -> columnarTranspositionCipherWindow.open());
+
         contentPane.add(btnCaesar);
+        contentPane.add(btnVigenere);
         contentPane.add(btnTransposition);
+        contentPane.add(btnColumnar);
         return dialog;
     }
 }

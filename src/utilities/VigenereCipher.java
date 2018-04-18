@@ -2,7 +2,7 @@ package utilities;
 
 import java.util.Scanner;
 
-class VigenereCipher {
+public class VigenereCipher {
 
     public static String encrypt(String plainText, String key){
         String trimmedText = GeneralUtilities.removeWhitespace(plainText);
