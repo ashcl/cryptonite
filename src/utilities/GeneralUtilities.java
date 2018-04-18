@@ -50,10 +50,8 @@ public class GeneralUtilities {
         HashMap<String, Integer> frequencies = FrequencyAnalysis.findMonograms(trimmedSubString);
         double sum = 0.0;
         for (String key : frequencies.keySet()) {
-            if (frequencies.get(key) != 0) {
-                double expectedFreq = strLength * ENGLISH_FREQUENCIES[ALPHABET.indexOf(key)];
-                sum += (Math.pow((frequencies.get(key) + expectedFreq), 2) / expectedFreq);
-            }
+            double expectedFreq = strLength * ENGLISH_FREQUENCIES[ALPHABET.indexOf(key)];
+            sum += (Math.pow((frequencies.get(key) + expectedFreq), 2) / expectedFreq);
         }
 
         return sum;
