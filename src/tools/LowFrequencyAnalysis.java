@@ -6,9 +6,9 @@ import utilities.GeneralUtilities;
 public class LowFrequencyAnalysis {
 
     public static void main(String[] args) {
-        String testString = "";
+        String testString = "dstvqbhwwdhhdstjmmsqgkghfwgtxxlytrhbhmutmgyinzxnlegemfksfrpxkxwitbkmpkikvyowmgafwjrxurqeekuyuvhlwhgwjbumvlvwgpqiemnsnlxisxkgwneqcvgxfeuesgmpvimvaiurrmwrqefbtipuyfwrkdqtwggeeluspxyxmpvimvwwfzefnmvrifsxvzwgmpnrwhvenvwtutgcpxfxgjunwihwmvaxwiwtymvkmlgvezrxuenzunsqrisbfinvqxfxwdrxiyghybkeetyfkepilhfgwjhnahkrqlwqrvvimvwjrhftjrvxlvcztlmqpvunwwguykfeffrxuzqcymhevrxhvmqvywagvlqlwhnvgmmwhvpbkhktxnerqezxdmvzhowlktyeszcimnkyteewmmumieesncmljmulwowwvzfndyorpnuxwjiqkmvrqxlmpkikvyoumtetgcpxfxgjunwzgymvmpcjifnmvriwmmtysguyuxvtnmfrjnkgghybkzgeigsxkjekuy";
         String trimmedString = GeneralUtilities.removeForeignChars(testString);
-        System.out.println(suggestKey(trimmedString, 7));
+        System.out.println(suggestKey(trimmedString, 6));
     }
 
     public static String suggestKey(String cipher, int keyLength) {
