@@ -5,9 +5,11 @@ package utilities;
  */
 import java.util.Scanner;
 
+import static utilities.GeneralUtilities.ALPHABET;
+
 public class CaesarCipher
 {
-    public static final String ALPHABET = "abcdefghijklmnopqrstuvwxyz";
+
 
     public static String encrypt(String plainText, int shiftKey)
     {

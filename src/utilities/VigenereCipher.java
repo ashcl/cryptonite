@@ -2,6 +2,8 @@ package utilities;
 
 import java.util.Scanner;
 
+import static utilities.GeneralUtilities.ALPHABET;
+
 public class VigenereCipher {
 
     public static String encrypt(String plainText, String key){
@@ -15,7 +17,7 @@ public class VigenereCipher {
 
         //Shift each string by an amount defined by the key
         for (int i = 0; i < key.length(); i++){
-            subStrings[i] = CaesarCipher.encrypt(subStrings[i], CaesarCipher.ALPHABET.indexOf(key.charAt(i)));
+            subStrings[i] = CaesarCipher.encrypt(subStrings[i], ALPHABET.indexOf(key.charAt(i)));
         }
 
         StringBuilder cipherBuilder = new StringBuilder();
@@ -35,7 +37,7 @@ public class VigenereCipher {
 
         //Shift each string by an amount defined by the key
         for (int i = 0; i < key.length(); i++){
-            subStrings[i] = CaesarCipher.decrypt(subStrings[i], CaesarCipher.ALPHABET.indexOf(key.charAt(i)));
+            subStrings[i] = CaesarCipher.decrypt(subStrings[i], ALPHABET.indexOf(key.charAt(i)));
         }
 
         StringBuilder cipherBuilder = new StringBuilder();
