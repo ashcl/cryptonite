@@ -49,7 +49,7 @@ public class KasiskiAnalysis {
 
     public static HashMap<Integer, Integer> calculateFactors(String cipherText, int sampleLength) {
         HashMap<Integer, Integer> factorCounts = new HashMap<>();
-        String trimmedCipher = GeneralUtilities.removeWhitespace(cipherText);
+        String trimmedCipher = GeneralUtilities.removeForeignChars(cipherText);
 
         //Sanity check
         if(sampleLength+3 >= cipherText.length()){

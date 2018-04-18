@@ -14,7 +14,7 @@ public class CaesarCipher
     public static String encrypt(String plainText, int shiftKey)
     {
         String trimmedText = plainText.toLowerCase();
-        trimmedText = GeneralUtilities.removeWhitespace(trimmedText);
+        trimmedText = GeneralUtilities.removeForeignChars(trimmedText);
 
         String cipherText = "";
         for (int i = 0; i < trimmedText.length(); i++)
@@ -30,7 +30,7 @@ public class CaesarCipher
     public static String decrypt(String cipherText, int shiftKey)
     {
         String trimmedText = cipherText.toLowerCase();
-        trimmedText = GeneralUtilities.removeWhitespace(trimmedText);
+        trimmedText = GeneralUtilities.removeForeignChars(trimmedText);
 
         String plainText = "";
         for (int i = 0; i < trimmedText.length(); i++)

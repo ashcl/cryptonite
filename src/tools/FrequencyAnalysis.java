@@ -35,7 +35,7 @@ public class FrequencyAnalysis {
 
     public static HashMap<String, Integer> findMonograms(String cipher){
         HashMap<String, Integer> frequencyChart = initializeAlphabetMap();
-        String cipherText = GeneralUtilities.removeWhitespace(cipher);
+        String cipherText = GeneralUtilities.removeForeignChars(cipher);
         String lowerCipher = cipherText.toLowerCase();
         for (int i = 0; i < lowerCipher.length(); i++){
             String character = Character.toString(lowerCipher.charAt(i));
@@ -46,7 +46,7 @@ public class FrequencyAnalysis {
 
     public static HashMap<String, Integer> findDigrams(String cipher){
         HashMap<String, Integer> frequencyChart = new HashMap<>();
-        String cipherText = GeneralUtilities.removeWhitespace(cipher);
+        String cipherText = GeneralUtilities.removeForeignChars(cipher);
         String lowerCipher = cipherText.toLowerCase();
         for (int i = 0; i < lowerCipher.length()-1; i++){
             String character = lowerCipher.substring(i, i+2);
@@ -57,7 +57,7 @@ public class FrequencyAnalysis {
 
     public static HashMap<String, Integer> findTrigrams(String cipher){
         HashMap<String, Integer> frequencyChart = new HashMap<>();
-        String cipherText = GeneralUtilities.removeWhitespace(cipher);
+        String cipherText = GeneralUtilities.removeForeignChars(cipher);
         String lowerCipher = cipherText.toLowerCase();
         for (int i = 0; i < lowerCipher.length()-2; i++){
             String character = lowerCipher.substring(i, i+3);

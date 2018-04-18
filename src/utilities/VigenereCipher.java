@@ -7,7 +7,7 @@ import static utilities.GeneralUtilities.ALPHABET;
 public class VigenereCipher {
 
     public static String encrypt(String plainText, String key){
-        String trimmedText = GeneralUtilities.removeWhitespace(plainText);
+        String trimmedText = GeneralUtilities.removeForeignChars(plainText);
         trimmedText = trimmedText.toLowerCase();
 
         String[] subStrings = new String[key.length()];
@@ -27,7 +27,7 @@ public class VigenereCipher {
     }
 
     public static String decrypt(String cipherText, String key){
-        String trimmedText = GeneralUtilities.removeWhitespace(cipherText);
+        String trimmedText = GeneralUtilities.removeForeignChars(cipherText);
         trimmedText = trimmedText.toLowerCase();
 
         String[] subStrings = new String[key.length()];

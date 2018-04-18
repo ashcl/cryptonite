@@ -54,7 +54,7 @@ public class IndexOfCoincidence {
      */
     public static String calculateICs(String s, int maxLength){
         StringBuilder builder = new StringBuilder();
-        String plain = GeneralUtilities.removeWhitespace(s);
+        String plain = GeneralUtilities.removeForeignChars(s);
         //Two for loops manage each iteration the outer one controlling length of the strings
         //The inner loop extracts each substring
         for (int l = 0; l < maxLength; l++){

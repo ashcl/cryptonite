@@ -6,29 +6,13 @@ import utilities.GeneralUtilities;
 public class LowFrequencyAnalysis {
 
     public static void main(String[] args) {
-        String testString = "xumop eeomn unhgp khikr vxqcm cpkdl mxmgx ltbte mltui  \n" +
-                "hqtmp kobhi eaoet sqqys umfmv xamab kjtpr bzqrj emwge  \n" +
-                "rpqke wlvkn unxrz lqrif eofhe fbxmi kubla ranzj mptyq  \n" +
-                "imtmb vurfv ryaqn glitm lcfqy rovvv yfarp morpm fbnqm  \n" +
-                "sfbld euhmt fligb kdirn kobhi ebkjt auwyq ppnqt febgq  \n" +
-                "yunia orusl bvkyi kubyg strkz fhegx iarvr avanh fbuqb  \n" +
-                "ipiae eivaz teqba zrrid ckztp lcyqd prbzq rmamt slmfp  \n" +
-                "nawii mxgsm aozte zvokz ripqv tevrk gzbir viupl rzkpa  \n" +
-                "wqqlr evrvz oitum xfebg tkfti eagfd msnkd ergxu unxfq  \n" +
-                "tfhiz myeak rbngs hrnkm tmaoy umtym ldeuh mtoye airks  \n" +
-                "mf ";
-
-//        System.out.println(suggestKey(testString, 6));
-
-        String trimmedString = GeneralUtilities.removeWhitespace(testString);
-//        int i = suggestShiftLength(GeneralUtilities.extractSubstring(trimmedString, 0, 6));
-//        System.out.println(i);
-//        System.out.println(GeneralUtilities.ALPHABET.charAt(i));
-        System.out.println(suggestKey(trimmedString, 6));
+        String testString = "";
+        String trimmedString = GeneralUtilities.removeForeignChars(testString);
+        System.out.println(suggestKey(trimmedString, 7));
     }
 
     public static String suggestKey(String cipher, int keyLength) {
-        String trimmedString = GeneralUtilities.removeWhitespace(cipher);
+        String trimmedString = GeneralUtilities.removeForeignChars(cipher);
         trimmedString = trimmedString.toLowerCase();
         int[] keyShifts = new int[keyLength];
         for (int i = 0; i < keyLength; i++) {
@@ -45,7 +29,7 @@ public class LowFrequencyAnalysis {
     }
 
     public static int suggestShiftLength(String subString) {
-        String trimmedString = GeneralUtilities.removeWhitespace(subString);
+        String trimmedString = GeneralUtilities.removeForeignChars(subString);
         trimmedString = trimmedString.toLowerCase();
 
         double[] chiAnalysis = new double[26];

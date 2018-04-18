@@ -43,7 +43,7 @@ public class ColumnarTransposition {
     public static String encode(String s, int colNum){
         //Since all a columnar transposition is is taking a substring of every nth character, we can reuse some old code.
         StringBuilder builder = new StringBuilder();
-        String plaintext = GeneralUtilities.removeWhitespace(s);
+        String plaintext = GeneralUtilities.removeForeignChars(s);
         for(int i = 0; i < colNum; i++){
             builder.append(GeneralUtilities.extractSubstring(plaintext, i, colNum));
         }
@@ -54,7 +54,7 @@ public class ColumnarTransposition {
     public static String decode(String s, int colNum){
         //Take each substring of length s.length()/colNum and read off each character from each substring in order.
         StringBuilder builder = new StringBuilder();
-        String cipher = GeneralUtilities.removeWhitespace(s);
+        String cipher = GeneralUtilities.removeForeignChars(s);
         String[] subStrings = new String[colNum];
         int interval = (cipher.length()/colNum);
         //Split the string into several substrings representing the columns
@@ -77,7 +77,7 @@ public class ColumnarTransposition {
     public static String encode(String s, String key){
         //Since all a columnar transposition is is taking a substring of every nth character, we can reuse some old code.
         StringBuilder builder = new StringBuilder();
-        String trimmedPlain = GeneralUtilities.removeWhitespace(s);
+        String trimmedPlain = GeneralUtilities.removeForeignChars(s);
 
         String[] subStrings = new String[key.length()];
 
@@ -98,7 +98,7 @@ public class ColumnarTransposition {
     public static String decode(String s, String key){
         //Take each substring of length s.length()/colNum and read off each character from each substring in order.
         StringBuilder builder = new StringBuilder();
-        String trimmedCipher = GeneralUtilities.removeWhitespace(s);
+        String trimmedCipher = GeneralUtilities.removeForeignChars(s);
 
         String[] subStrings = new String[key.length()];
         int interval = (trimmedCipher.length()/key.length());

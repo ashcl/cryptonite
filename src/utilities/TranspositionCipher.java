@@ -22,7 +22,7 @@ public class TranspositionCipher {
             throw new MalformedParametersException("Key must contain text of some sort.");
         }
         int[] keyIndex = GeneralUtilities.obtainIndexKeyArray(key, true);
-        String plainText = GeneralUtilities.removeWhitespace(s);
+        String plainText = GeneralUtilities.removeForeignChars(s);
         //Split cipher text into blocks of key.length()
         ArrayList<String> subStrings = new ArrayList<>();
         for (int i = 0; i < plainText.length(); i= i+key.length()){
@@ -42,7 +42,7 @@ public class TranspositionCipher {
             throw new MalformedParametersException("Key must contain text of some sort.");
         }
         int[] keyIndex = GeneralUtilities.obtainIndexKeyArray(key, false);
-        String cipherText = GeneralUtilities.removeWhitespace(s);
+        String cipherText = GeneralUtilities.removeForeignChars(s);
         //Split cipher text into blocks of key.length()
         ArrayList<String> subStrings = new ArrayList<>();
         for (int i = 0; i < cipherText.length(); i= i+key.length()){

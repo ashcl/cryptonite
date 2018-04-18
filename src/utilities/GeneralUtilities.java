@@ -39,13 +39,15 @@ public class GeneralUtilities {
         return builder.toString();
     }
 
-    public static String removeWhitespace(String s) {
-        return s.replaceAll("\\s+", "");
+    public static String removeForeignChars(String s) {
+        String returnVal = s.replaceAll("\\s+", "");
+        returnVal = returnVal.replaceAll("([^\\p{L}\\p{N}])", "");
+        return returnVal;
     }
 
     public static double chiSquareAnalysis(String subString) {
         String trimmedSubString = subString.toLowerCase();
-        trimmedSubString = removeWhitespace(trimmedSubString);
+        trimmedSubString = removeForeignChars(trimmedSubString);
         int strLength = trimmedSubString.length();
         HashMap<String, Integer> frequencies = FrequencyAnalysis.findMonograms(trimmedSubString);
         double sum = 0.0;
