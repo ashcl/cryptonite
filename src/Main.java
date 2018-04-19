@@ -1,8 +1,5 @@
 import visuals.*;
-import visuals.analysis.FrequencyWindow;
-import visuals.analysis.ICWindow;
-import visuals.analysis.KasiskiWindow;
-import visuals.analysis.ShiftAnalysisWindow;
+import visuals.analysis.*;
 import visuals.ciphers.CaesarCipherWindow;
 import visuals.ciphers.ColumnarTranspositionCipherWindow;
 import visuals.ciphers.TranspositionCipherWindow;
@@ -22,6 +19,7 @@ public class Main extends JFrame implements ActionListener{
     ShiftAnalysisWindow shiftAnalysisWindow;
     KasiskiWindow kasiskiWindow;
     ICWindow iCWindow;
+    LowFrequencyWindow lowFrequencyWindow;
 
     CaesarCipherWindow caesarCipherWindow;
     VigenereCipherWindow vigenereCipherWindow;
@@ -35,6 +33,7 @@ public class Main extends JFrame implements ActionListener{
     JButton btnFrequency;
     JButton btnIC;
     JButton btnKasiski;
+    JButton btnLowFreq;
 
     JButton btnCaesar;
     JButton btnVigenere;
@@ -66,6 +65,7 @@ public class Main extends JFrame implements ActionListener{
         shiftAnalysisWindow = new ShiftAnalysisWindow(this);
         kasiskiWindow = new KasiskiWindow(this);
         iCWindow = new ICWindow(this);
+        lowFrequencyWindow = new LowFrequencyWindow(this);
 
         caesarCipherWindow = new CaesarCipherWindow(this);
         vigenereCipherWindow = new VigenereCipherWindow(this);
@@ -153,18 +153,21 @@ public class Main extends JFrame implements ActionListener{
         btnFrequency = new JButton("Frequency Analysis");
         btnIC = new JButton("Index of Coincidence");
         btnKasiski = new JButton("Kasiski Analysis");
+        btnShift = new JButton("Shift Analysis");
+        btnLowFreq = new JButton("Low Frequency");
 
         btnFrequency.addActionListener(e -> freqWindow.open());
         btnIC.addActionListener(e -> iCWindow.open());
         btnKasiski.addActionListener(e -> kasiskiWindow.open());
-        btnShift = new JButton("Shift Analysis");
         btnShift.addActionListener(e -> shiftAnalysisWindow.open());
+        btnLowFreq.addActionListener(e -> lowFrequencyWindow.open());
 
 
         contentPane.add(btnFrequency);
         contentPane.add(btnShift);
         contentPane.add(btnKasiski);
         contentPane.add(btnIC);
+        contentPane.add(btnLowFreq);
         return dialog;
     }
 
