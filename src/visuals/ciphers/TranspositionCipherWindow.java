@@ -25,10 +25,12 @@ public class TranspositionCipherWindow extends CipherDialog {
 
         constraints.gridx = 0;
         constraints.gridy = 0;
-        constraints.gridwidth = 2;
+        contentPane.add(new JLabel("Key: "), constraints);
+        constraints.gridx = 1;
         contentPane.add(transpositionKeyField, constraints);
 
         constraints.gridy = 1;
+        constraints.gridx = 0;
         constraints.gridwidth = 1;
         contentPane.add(encryptButton);
 
