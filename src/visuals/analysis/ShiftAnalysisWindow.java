@@ -23,7 +23,7 @@ public class ShiftAnalysisWindow extends JDialog {
     private void initializeUI() {
         Container container = this.getContentPane();
         container.setLayout(new BorderLayout());
-        solveButton = new JButton("Shift");
+        solveButton = new JButton("Analyze");
         solveButton.addActionListener(e -> solveCipher());
 
         resultTextArea = new JTextArea(24, 24);
@@ -40,7 +40,7 @@ public class ShiftAnalysisWindow extends JDialog {
         String cipherText = TextBoxes.txtAreaCipher.getText();
         String cipherSnippet;
         try {
-            cipherSnippet = cipherText.substring(0, 10);
+            cipherSnippet = cipherText.substring(0, 25);
         }catch (Exception e){
             //The string isn't big enough for a batch of 10 characters
             cipherSnippet = cipherText;

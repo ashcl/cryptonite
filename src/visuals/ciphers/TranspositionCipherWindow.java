@@ -32,10 +32,10 @@ public class TranspositionCipherWindow extends CipherDialog {
         constraints.gridy = 1;
         constraints.gridx = 0;
         constraints.gridwidth = 1;
-        contentPane.add(encryptButton);
+        contentPane.add(encryptButton, constraints);
 
         constraints.gridx = 1;
-        contentPane.add(decryptButton);
+        contentPane.add(decryptButton, constraints);
     }
 
     @Override

@@ -111,10 +111,20 @@ public class ColumnarTransposition {
 
         for (int i = 0; i < trimmedCipher.length(); i++){
             //We want to peel of the first character of each sub string every time we go through this loop.
-            String subString = subStrings[indexArray[i%key.length()]];
+            String subString;
+            if (i == 1){
+                 subString = subStrings[indexArray[i]];
+            }else{
+                subString = subStrings[indexArray[i%key.length()]];
+            }
+
             if(subString.length() != 0){
                 builder.append(subString.charAt(0));
-                subStrings[indexArray[i%key.length()]] = subString.substring(1);
+                try {
+                    subStrings[indexArray[i % key.length()]] = subString.substring(1);
+                }catch (IndexOutOfBoundsException e){
+                    //Ignore it
+                }
             } else {
                 i = trimmedCipher.length();
             }
