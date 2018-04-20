@@ -68,7 +68,7 @@ public class SubstitutionCipherWindow extends CipherDialog {
         JPanel inputPanel = new JPanel(new FlowLayout());
 
         for (CipherBox cBox : cipherBoxes) {
-            inputPanel.add(new JLabel(cBox.getKey()));
+            inputPanel.add(new JLabel(cBox.getKey() + ": "));
             inputPanel.add(cBox);
         }
 

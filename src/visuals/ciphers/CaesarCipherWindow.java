@@ -24,7 +24,7 @@ public class CaesarCipherWindow extends CipherDialog {
 
         constraints.gridy = 0;
         constraints.gridx = 0;
-        contentPane.add(new Label("Shift length"), constraints);
+        contentPane.add(new Label("Shift length: "), constraints);
         constraints.gridx = 1;
         contentPane.add(shiftLengthField, constraints);
 
