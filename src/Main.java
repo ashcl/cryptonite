@@ -49,12 +49,11 @@ public class Main extends JFrame implements ActionListener{
     public Main(){
         this.setTitle("Cryptonite");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setResizable(false);
 
         this.createChildWindows();
         this.setUpGui();
 
-        this.setSize(500, 600);
+        this.pack();
         this.setVisible(true);
 
     }
