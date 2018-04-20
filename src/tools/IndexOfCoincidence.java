@@ -9,17 +9,7 @@ import java.util.HashMap;
 public class IndexOfCoincidence {
 
     public static void main(String[] args) {
-        String testString="xumop eeomn unhgp khikr vxqcm cpkdl mxmgx ltbte mltui " +
-                "hqtmp kobhi eaoet sqqys umfmv xamab kjtpr bzqrj emwge " +
-                "rpqke wlvkn unxrz lqrif eofhe fbxmi kubla ranzj mptyq " +
-                "imtmb vurfv ryaqn glitm lcfqy rovvv yfarp morpm fbnqm " +
-                "sfbld euhmt fligb kdirn kobhi ebkjt auwyq ppnqt febgq " +
-                "yunia orusl bvkyi kubyg strkz fhegx iarvr avanh fbuqb " +
-                "ipiae eivaz teqba zrrid ckztp lcyqd prbzq rmamt slmfp " +
-                "nawii mxgsm aozte zvokz ripqv tevrk gzbir viupl rzkpa " +
-                "wqqlr evrvz oitum xfebg tkfti eagfd msnkd ergxu unxfq " +
-                "tfhiz myeak rbngs hrnkm tmaoy umtym ldeuh mtoye airks " +
-                "mf";
+        String testString="dstvqbhwwdhhdstjmmsqgkghfwgtxxlytrhbhmutmgyinzxnlegemfksfrpxkxwitbkmpkikvyowmgafwjrxurqeekuyuvhlwhgwjbumvlvwgpqiemnsnlxisxkgwneqcvgxfeuesgmpvimvaiurrmwrqefbtipuyfwrkdqtwggeeluspxyxmpvimvwwfzefnmvrifsxvzwgmpnrwhvenvwtutgcpxfxgjunwihwmvaxwiwtymvkmlgvezrxuenzunsqrisbfinvqxfxwdrxiyghybkeetyfkepilhfgwjhnahkrqlwqrvvimvwjrhftjrvxlvcztlmqpvunwwguykfeffrxuzqcymhevrxhvmqvywagvlqlwhnvgmmwhvpbkhktxnerqezxdmvzhowlktyeszcimnkyteewmmumieesncmljmulwowwvzfndyorpnuxwjiqkmvrqxlmpkikvyoumtetgcpxfxgjunwzgymvmpcjifnmvriwmmtysguyuxvtnmfrjnkgghybkzgeigsxkjekuy";
         System.out.println(IndexOfCoincidence.calculateICs(testString, 8));
     }
 

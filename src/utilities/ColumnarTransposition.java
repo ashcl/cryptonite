@@ -3,36 +3,7 @@ package utilities;
 public class ColumnarTransposition {
 
     public static void main(String[] args){
-        String testEncoded = "tpioc ntehe haitf aalst icntl rstvt astlg feity shrna " +
-                "xtota nptee estnm tasnn rafut neqpc leibw roosn itcrc " +
-                "dlera roapi sroof oehrn saloh omset ipoeh utpio hkoha " +
-                "hrnpe mwiec iteer lklec otpia mhnid okutb utcua uyrfi " +
-                "ianna tssis oeyli nonnl pqasn tmdot issun orpis iohmd " +
-                "amroo ienfr ciech xbigq ynlrs ecsax afroo giest otbsh " +
-                "sthhe rlpfc ntcaa datup anrma odres ehqni iebwt equea " +
-                "mdelm utneb wcnas ndweb eigqy etoth uptes nvhoi tutas " +
-                "nrntp iewee etien itaou oehtt dvghc hrsao buept ireqs " +
-                "tsnii hcucv tesxe pbucr iioan iases opnhu crslh felet " +
-                "doeuf nbshn iaagr oosoc osiot isirw lmdfi iiaea heeib " +
-                "rosrr hmcrq";
-        System.out.println(decode(testEncoded, 5));
 
-        String transposedEncoded = "stsni ihcuc vtesx epbuc riioa niase sopnh ucrsl hfele  \n" +
-                "tdoeu fnbsh niaag rooso cosio tisir wlmdf iiiae aheei  \n" +
-                "brosr \n" +
-                "rhmcr qniie bwteq ueamd elmut nebwc nasnd webei  \n" +
-                "gqyet othup tesnv hoitu tasnr ntpie weeet ienit aouoe  \n" +
-                "httdv ghchr saobu eptir eqasn tmdot issun orpis iohmd  \n" +
-                "amroo ienfr ciech xbigq ynlrs ecsax afroo giest otbsh  \n" +
-                "sthhe rlpfc ntcaa datup anrma odres ehqro \n" +
-                "ofoeh rnsal  \n" +
-                "ohoms etipo ehutp iohko hahrn pemwi ecite erlkl ecotp  \n" +
-                "iamhn idoku tbutc uauyr fiian natss isoey linon nlpqt  \n" +
-                "piocn teheh aitfa alsti cntlr stvta stlgf eitys hrnax  \n" +
-                "totan pteee stnmt asnnr afutn eqpcl eibwr oosni tcrcd  \n" +
-                "lerar oapis";
-
-        System.out.println(decode(transposedEncoded, "edcba"));
         String test = "This is a test string man";
         String encoded = encode(test, "abcde");
         System.out.println(encoded);
