@@ -1,9 +1,6 @@
 import visuals.*;
 import visuals.analysis.*;
-import visuals.ciphers.CaesarCipherWindow;
-import visuals.ciphers.ColumnarTranspositionCipherWindow;
-import visuals.ciphers.TranspositionCipherWindow;
-import visuals.ciphers.VigenereCipherWindow;
+import visuals.ciphers.*;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -22,6 +19,7 @@ public class Main extends JFrame implements ActionListener{
     LowFrequencyWindow lowFrequencyWindow;
 
     CaesarCipherWindow caesarCipherWindow;
+    SubstitutionCipherWindow substitutionCipherWindow;
     VigenereCipherWindow vigenereCipherWindow;
     TranspositionCipherWindow transpositionCipherWindow;
     ColumnarTranspositionCipherWindow columnarTranspositionCipherWindow;
@@ -36,6 +34,7 @@ public class Main extends JFrame implements ActionListener{
     JButton btnLowFreq;
 
     JButton btnCaesar;
+    JButton btnSubstitution;
     JButton btnVigenere;
     JButton btnTransposition;
     JButton btnColumnar;
@@ -68,6 +67,7 @@ public class Main extends JFrame implements ActionListener{
         lowFrequencyWindow = new LowFrequencyWindow(this);
 
         caesarCipherWindow = new CaesarCipherWindow(this);
+        substitutionCipherWindow = new SubstitutionCipherWindow(this);
         vigenereCipherWindow = new VigenereCipherWindow(this);
         transpositionCipherWindow = new TranspositionCipherWindow(this);
         columnarTranspositionCipherWindow = new ColumnarTranspositionCipherWindow(this);
@@ -190,7 +190,11 @@ public class Main extends JFrame implements ActionListener{
         btnColumnar = new JButton("Columnar Transposition");
         btnColumnar.addActionListener(e -> columnarTranspositionCipherWindow.open());
 
+        btnSubstitution = new JButton("Substitution Window");
+        btnSubstitution.addActionListener(e -> substitutionCipherWindow.open());
+
         contentPane.add(btnCaesar);
+        contentPane.add(btnSubstitution);
         contentPane.add(btnVigenere);
         contentPane.add(btnTransposition);
         contentPane.add(btnColumnar);
